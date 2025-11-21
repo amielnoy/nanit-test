@@ -166,6 +166,5 @@ cython_debug/
 .idea/
 allure-results/
 allure-report/
-assets/
 report.html
 
