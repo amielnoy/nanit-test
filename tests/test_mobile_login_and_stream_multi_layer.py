@@ -8,14 +8,12 @@ from mobile_pages.factory import (
     get_live_stream_page,
 )
 from infra.allure_utils import AllureStep
+from infra.test_data_loader import load_login_users
 
 
 @pytest.mark.parametrize(
     "email,password",
-    [
-        ("demo_app1@nanit.com", "12341234"),
-        ("demo_app2@nanit.com", "12344321"),
-    ]
+    [(u["email"], u["password"]) for u in load_login_users()]
 )
 @pytest.mark.e2e_api_integrated
 @allure.feature("Mobile Streaming")
