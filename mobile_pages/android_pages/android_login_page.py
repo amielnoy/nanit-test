@@ -1,12 +1,10 @@
 from infra.mobile_session import MobileSession
+from mobile_pages.base_page import BasePage
 
 
-class AndroidLoginPage:
+class AndroidLoginPage(BasePage):
     def __init__(self, session: MobileSession):
-        self.session = session
-
-    def is_visible(self) -> bool:
-        return self.session.is_visible("email_input_android")
+        super().__init__(session, "email_input_android")
 
     def enter_email(self, email: str):
         self.session.type("email_input_android", email)

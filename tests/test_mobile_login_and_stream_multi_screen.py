@@ -35,14 +35,14 @@ def test_mobile_stream_status(email, password, mobile_session: MobileSession, ap
 
     with step("Open Welcome page and validate visibility"):
         welcome = get_welcome_page(mobile_session)
-        assert welcome.is_visible(), "Welcome screen should show login button"
+        welcome.wait_until_visible()
 
     with step("Tap login on Welcome page"):
         welcome.tap_login()
 
     with step("Open Login page and validate visibility"):
         login = get_login_page(mobile_session)
-        assert login.is_visible(), "Login screen should be visible after tapping login"
+        login.wait_until_visible()
 
     with step("Fill login form and submit"):
         login.enter_email(email)
@@ -52,7 +52,7 @@ def test_mobile_stream_status(email, password, mobile_session: MobileSession, ap
 
     with step("Validate Live Stream screen is visible and status == 'streaming'"):
         live = get_live_stream_page(mobile_session)
-        assert live.is_visible(), "Live Stream screen should be visible after login"
+        live.wait_until_visible()
 
         ui_status = live.get_stream_status()
         step.attach_text("UI streaming status", ui_status)

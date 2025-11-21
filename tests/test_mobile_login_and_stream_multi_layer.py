@@ -36,12 +36,12 @@ def test_mobile_and_backend_stream_status_are_consistent(
 
     with step("Open Welcome page and validate visibility"):
         welcome = get_welcome_page(mobile_session)
-        assert welcome.is_visible(), "Welcome screen should show login button"
+        welcome.wait_until_visible()
 
     with step("Navigate from Welcome to Login screen"):
         welcome.tap_login()
         login = get_login_page(mobile_session)
-        assert login.is_visible(), "Login screen should be visible after tapping login"
+        login.wait_until_visible()
 
     with step("Fill login form and submit"):
         login.enter_email(email)
@@ -51,7 +51,7 @@ def test_mobile_and_backend_stream_status_are_consistent(
 
     with step("Validate Live Stream screen is visible and status is 'streaming' on UI"):
         live = get_live_stream_page(mobile_session)
-        assert live.is_visible(), "Live Stream screen should be visible after successful login"
+        live.wait_until_visible()
 
         ui_status = live.get_stream_status()
         step.attach_text("UI streaming status (first check)", ui_status)

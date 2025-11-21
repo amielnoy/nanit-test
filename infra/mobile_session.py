@@ -1,3 +1,4 @@
+import time
 from dataclasses import dataclass, field
 from typing import Dict, Optional, Any
 
@@ -100,6 +101,18 @@ class MobileSession(BaseSession):
         }
 
         return self.app_launched and element_id in mapping.get(self.current_screen, set())
+
+    def wait_for_visibility(self, element_id: str, timeout: float = 3.0, interval: float = 0.1) -> bool:
+        """
+        Simple polling wait for element visibility, similar to Appium waits.
+        Raises AssertionError on timeout to keep tests deterministic.
+        """
+        end_time = time.time() + timeout
+        while time.time() < end_time:
+            if self.is_visible(element_id):
+                return True
+            time.sleep(interval)
+        raise AssertionError(f"Element not visible after {timeout}s on '{self.current_screen}': {element_id}")
 
     def click(self, element_id: str):
         if not self.is_visible(element_id):
