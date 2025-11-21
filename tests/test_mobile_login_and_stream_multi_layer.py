@@ -13,7 +13,7 @@ from infra.test_data_loader import load_login_users
 
 @pytest.mark.parametrize(
     "email,password",
-    [(u["email"], u["password"]) for u in load_login_users()]
+    [(credentials["email"], credentials["password"]) for credentials in load_login_users()]
 )
 @pytest.mark.e2e_api_integrated
 @allure.feature("Mobile Streaming")
