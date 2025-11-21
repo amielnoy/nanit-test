@@ -24,3 +24,9 @@ The framework supports:
 2)Allure reporting
 3)Friendly for ci by pytest.ini & .env
 4)BaseSession abstract class to share functionality on mobile and api sessions
+
+## .env was added
+to repository although not recommended to do so.
+It is recommended to use a .gitignore file to exclude it from version control. 
+
+But only for test purposes, i included it for ease of use
